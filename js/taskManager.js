@@ -1,7 +1,7 @@
-class TaskMangaer{
+class TaskManager{
     tasks;
 }
-constructor(tasks) {
+constructor(tasks); {
     this.task = task ;
 
 }
@@ -52,7 +52,6 @@ const task5 = {
 class addTask {
     Id;
 }
-constructor(Id) {
+constructor(Id); {
     this.currentId = currentId;
 }
-function 
