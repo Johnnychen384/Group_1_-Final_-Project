@@ -7,31 +7,35 @@
     <title>Tasks to do</title>
     <!-- cdn for tailwind css -->
     <script src="https://cdn.tailwindcss.com"></script>
+    <!-- fontawesome -->
+    <script src="https://kit.fontawesome.com/9beae211b7.js" crossorigin="anonymous"></script>
+
     <!-- our own css -->
-    <link rel="stylesheet" href="styles.css">
+    <!-- <link rel="stylesheet" href="styles.css"> -->
   </head>
   <body class="bg-gradient-to-r from-cyan-500 to-blue-500">
     
     <!-- title -->
-    <header class="flex justify-center content-center m-10">
+    <header class="flex justify-center content-center">
       <h1 class="text-4xl">To Do List</h1>
     </header>
 
     <!-- form to input task information -->
     <form class="flex flex-col m-10 justify-center content-center">
    
-    <!-- Link to JavaScript file-->
-    <script src="js/taskManager.js"></script>
 
-    <!-- Link to JavaScript file-->
-    <script src="js/index.js"></script>
+
+    <!-- Link to JavaScript file -->
+    <!-- <script src="js/taskManager.js"></script> -->
+    <!-- Link to JavaScript file  -->
+    <!-- <script src="js/index.js"></script> -->
 
     
       <!-- task name input -->
       <div class="flex justify-center mb-5 w-10/12">
         <Label for="taskName" class="mr-1">Task Name:</Label>
         <input type="text" id="taskName" class="border-solid	border-black">
-        <input type="text" list="tasks" id="task" name="task">
+        <!-- <input type="text" list="tasks" id="task" name="task">
         <datalist id="tasks"> 
          <option value="start a load of laundry"> </option>
          <option value="clean the family car"> </option>
@@ -39,7 +43,7 @@
          <option value="purchase items on grocery list"></option>
          <option value="prepare and put away meals for the week"></option>
          <option value="adjust the waters pH and remove debris"></option>
-    </datalist>
+        </datalist> -->
       </div>
       
 
@@ -48,14 +52,14 @@
         <div class="flex flex-col">
           <label for="taskDescription" class="mr-1">Description:</label>
           <textarea id="taskDescription" name="taskDescription" rows="4" cols="56"></textarea>
-           <input type="text" list="assignment" id="description" name="description">
+           <!-- <input type="text" list="assignment" id="description" name="description">
            <datalist id="assignment">
              <option value="wash, dry, and fold clothes"></option>
              <option value="wash and vaccum the family car"></option>
              <option value="purchase items on grocery list"></option>
              <option value="prepare and put away meals for the week"></option>
              <option value="adjust the waters pH and remove debris"></option>
-           </datalist>
+           </datalist> -->
         </div> 
       </div>
       
@@ -64,13 +68,13 @@
       <div class="flex justify-center mb-5 w-10/12">
         <label for="assignedTo" class="mr-1">Assigned To:</label>
         <input type="text" id="assignedTo" list="names" name="assignedTo">
-        <datalist id="names">
+        <!-- <datalist id="names">
           <option value="Johnny"></option>
           <option value="Eskinder"></option>
           <option value="Amanda"></option>
           <option value="Richard"></option>
           <option value="Therry"></option>
-        </datalist>
+        </datalist> -->
       </div>
       
 
@@ -88,5 +92,13 @@
         <button type="submit" id="submitBtn" class="hover:text-xl hover:opacity-40 border-solid border-2 border-black w-32 py-2">Submit</button>
       </div>
     </form>
+
+    <!-- holds all tasks we create. -->
+    <main id="taskContainer" class="flex flex-col justify-center mx-64">
+
+    </main>
+    
+
+    <script src="assets/js/JC.js"></script>
   </body>
 </html>
