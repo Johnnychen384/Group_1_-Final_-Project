@@ -41,7 +41,10 @@ btn.addEventListener('click', () => {
     } else {
 
         // removes warning
-        document.getElementById('warning').remove();
+        if(document.getElementById('warning') !== null){
+            document.getElementById('warning').remove();
+        }
+        
         
         
         // creates new Object called newTask using TaskManager Class
@@ -58,6 +61,9 @@ btn.addEventListener('click', () => {
         // calls the addTask method in the newTask Object, passing in stored input field values.
         newTask.addTask(taskName, taskDesc, who, cal, "TODO");
         console.log(newTask.tasks)
+
+
+        renderTasks();
 
         // clears inputfields
         inputName.value = " "
