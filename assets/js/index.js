@@ -1,80 +1,75 @@
-document.addEventListener('DOMContentLoaded', () => {
-const addForm = document.querySelector('form.add'),
- taskInput = document.querySelector('#task'),
- itemList = document.querySelector('.description');
- let taskArr = [],serializeTasks;
- if (localStorage.getItem('taskDescription')) {
- taskArr = JSON.parse(localStorage.getItem('tasks'));
-} else {
- addTask('You will see your tasks here');
- }
- show();
+// allows this javascript page to use TaskManager Class from taskManager.js page.
+import TaskManager from "./taskManager.js";
 
-function addTask(value) {
- if (value != '' && value != ' ') {
- taskArr.push(value);
-const newTask = document.createElement('div');
- newTask.innerHTML = `
- <div class="item">
- <h5 class="itemName">${value}</h5>
-<div class="itemIcons">
- <button class = "completeBtn">done</button>
-<button class = "deleteBtn">delete</button>
-</div>
-</div>
-`;
-itemList.append(newTask);
- btnListener();
-serializeTasks = JSON.stringify(taskArr);
-localStorage.setItem('tasks', serializeTasks);
- }
-}
+// selectors -------------------------------------------------->
+const inputName =  document.getElementById('taskName');
+const inputDesc = document.getElementById('taskDescription');
+const inputWho = document.getElementById('assignedTo');
+const inputCal = document.getElementById('calendar');
+const taskContainer = document.getElementById('taskContainer');
+const btn = document.getElementById('submitBtn');
 
- function show() {
- itemList.innerHTML = '';
-taskArr.forEach((element) => {
- const newTask = document.createElement('div');
- newTask.innerHTML = `
- <div class="item">
-<h5 class="itemName">${element}</h5>
-<div class="itemIcons">
- <button class = "completeBtn">done</button>
- <button class = "deleteBtn">delete</button>
- </div>
-</div>
-`;
- itemList.append(newTask);
-});
- btnListener();
- serializeTasks = JSON.stringify(taskArr);
- localStorage.setItem('taskDescription', serializeTasks);
-}
 
- function btnListener(){
-document.querySelectorAll('.completeBtn').forEach((element, index) => {
-element.onclick = (event) => {
- event.target.parentNode.parentNode.style.color = 'green';
- setTimeout(() => event.target.parentNode.parentNode.remove(), 1000);
-taskArr.splice(index, 1);
-serializeTasks = JSON.stringify(taskArr);
-localStorage.setItem('taskDescription', serializeTasks);
-setTimeout(show,1000);
- };
- });
- document.querySelectorAll('.deleteBtn').forEach((element, index) => {
- element.onclick = (event) => {
- event.target.parentNode.parentNode.remove();
- taskArr.splice(index, 1);
- serializeTasks = JSON.stringify(taskArr);
- localStorage.setItem('taskDescription', serializeTasks);
- show();
- };
+
+// events ------------------------------------------------------->
+
+// adds event + function to the submit button
+btn.addEventListener('click', () => {
+
+    // prevents page from resetting
+    event.preventDefault();
+
+
+    // creates div containing warning html
+    const warning = document.createElement('div');
+    warning.classList.add('warning', 'absolute', 'top-3/4', 'left-1/3', 'w-1/3');
+    warning.setAttribute('id', 'warning');
+    warning.innerHTML = `
+        <div class="bg-orange-100 border-l-4 border-orange-500 text-orange-700 p-4" role="alert">
+            <p class="font-bold">Warning!</p>
+            <p>Not all fields have been filled.</p>
+        </div>
+    `;
+
+
+    // checks if any input field is empty
+    if(inputName.value === "" || inputDesc.value === '' || inputWho.value === "" || inputCal.value === ""){
+
+        // if input fields are empty then add warning to form
+        taskContainer.appendChild(warning);
+        
+    } else {
+
+        // removes warning
+        document.getElementById('warning').remove();
+        
+        
+        // creates new Object called newTask using TaskManager Class
+        const newTask = new TaskManager();
+
+        // stores all input fields values
+        const taskName = inputName.value;
+        const taskDesc = inputDesc.value;
+        const who = inputWho.value;
+        const cal = inputCal.value;
+
+
+
+        // calls the addTask method in the newTask Object, passing in stored input field values.
+        newTask.addTask(taskName, taskDesc, who, cal, "TODO");
+        console.log(newTask.tasks)
+
+        // clears inputfields
+        inputName.value = " "
+        inputDesc.value = " "
+        inputWho.value = " "
+        inputCal.value = " "
+
+    };
+    
 });
- }
-addForm.addEventListener('submit', (event) => {
-event.preventDefault();
- addTask(taskInput.value);
- taskInput.value = '';
- });
-});
+
+
+
+
 

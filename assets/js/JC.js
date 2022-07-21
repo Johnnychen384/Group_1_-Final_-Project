@@ -49,7 +49,7 @@ function renderTasks(){
        
         <div class="flex flex-col pt-4">
             <button class="completedTask">
-                <i class="far fa-square"></i>
+                <i class="far fa-square pointer-events-none"></i>
             </button>
             <button class="details text-xs">Details</button>
         </div>
@@ -72,7 +72,7 @@ function renderTasks(){
 
 
 
-// function that depends on what the class of the event that triggers it is, to do something/
+// function that has multi-uses which depends on what the class of the event that triggers it is, to do something/
 function popUp(e){
     const target = e.target;
 
@@ -104,7 +104,7 @@ function popUp(e){
         `
 
         // adds newDiv to task container.
-        taskContainer.appendChild(newDiv)
+        taskContainer.appendChild(newDiv);
 
 
 
@@ -112,8 +112,43 @@ function popUp(e){
     } else if(target.classList[0] === "closeIt"){
 
         // removes close buttons grandparent element.
-        target.parentElement.parentElement.remove()
-    };
+        target.parentElement.parentElement.remove();
 
+
+    // checks if button is empty square
+    } else if (target.classList[0] === 'completedTask'){
+
+        // change empty square to checkmarked square
+        target.innerHTML = `
+            <i class="far fa-check-square pointer-events-none"></i>
+        `
+        // adds class checked to this checkedmarked square
+        target.classList.add('checked');
+
+        // removes completedTask
+        target.classList.remove('completedTask');
+        
+
+    // checks if button is checkmarked square
+    } else if(target.classList[0] === 'checked'){
+
+        // change it to empty square
+        target.innerHTML = `
+            <i class="far fa-square pointer-events-none"></i>
+        `
+
+        // adds completedTask class to this empty square
+        target.classList.add('completedTask');
+
+        // removes checked class from empty square.
+        target.classList.remove('checked');
+
+
+    // checks if button is Delete button.
+    } else if(target.classList[0] === 'deleteIt'){
+
+        // targets the delete buttons parent element and deletes it and all its child elements.
+        target.parentElement.remove();
+    };
 
 };
