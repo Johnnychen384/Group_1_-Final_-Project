@@ -10,6 +10,12 @@ const taskContainer = document.getElementById('taskContainer');
 const btn = document.getElementById('submitBtn');
 
 
+// creates new Object called newTask using TaskManager Class
+// has to be declared above the call back function on btn 
+// to prevent resetting array in newTask. This allows us
+// to add multiple objects into array.
+const newTask = new TaskManager();
+
 
 // events ------------------------------------------------------->
 
@@ -20,23 +26,39 @@ btn.addEventListener('click', () => {
     event.preventDefault();
 
 
-    // creates div containing warning html
-    const warning = document.createElement('div');
-    warning.classList.add('warning', 'absolute', 'top-3/4', 'left-1/3', 'w-1/3');
-    warning.setAttribute('id', 'warning');
-    warning.innerHTML = `
-        <div class="bg-orange-100 border-l-4 border-orange-500 text-orange-700 p-4" role="alert">
-            <p class="font-bold">Warning!</p>
-            <p>Not all fields have been filled.</p>
-        </div>
-    `;
 
+    // function to create popup warning depending on field.
+    const warningPop = (field) => {
 
-    // checks if any input field is empty
-    if(inputName.value === "" || inputDesc.value === '' || inputWho.value === "" || inputCal.value === ""){
+         // creates div containing warning html
+        const warning = document.createElement('div');
+        warning.classList.add('warning', 'absolute', 'top-3/4', 'left-1/3', 'w-1/3');
+        warning.setAttribute('id', 'warning');
+        warning.innerHTML = `
+            <div class="bg-orange-100 border-l-4 border-orange-500 text-orange-700 p-4" role="alert">
+                <p class="font-bold">Warning!</p>
+                <p>${field} has not been filled out.</p>
+            </div>
+        `;
 
         // if input fields are empty then add warning to form
         taskContainer.appendChild(warning);
+    }
+   
+
+
+    // checks if any input field is empty
+    if(inputName.value === "" ){
+        warningPop("Task_Name")
+       
+    } else if(inputDesc.value === ''){
+        warningPop("Description")
+
+    } else if(inputWho.value === ""){
+        warningPop("Assigned_To")
+
+    } else if(inputCal.value === ""){
+        warningPop("Date")
         
     } else {
 
@@ -47,31 +69,31 @@ btn.addEventListener('click', () => {
         
         
         
-        // creates new Object called newTask using TaskManager Class
-        const newTask = new TaskManager();
-
         // stores all input fields values
         const taskName = inputName.value;
         const taskDesc = inputDesc.value;
         const who = inputWho.value;
         const cal = inputCal.value;
-
-
+        
 
         // calls the addTask method in the newTask Object, passing in stored input field values.
         newTask.addTask(taskName, taskDesc, who, cal, "TODO");
-        console.log(newTask.tasks)
+        
 
+        // calls render function and saves reference in content var
+        const content = newTask.render();
 
-        renderTasks();
+        // set taskContainers html  equal to content
+        taskContainer.innerHTML = content;
 
         // clears inputfields
-        inputName.value = " "
-        inputDesc.value = " "
-        inputWho.value = " "
-        inputCal.value = " "
+        inputName.value = " ";
+        inputDesc.value = " ";
+        inputWho.value = " ";
+        inputCal.value = "";
 
     };
+    
     
 });
 

@@ -21,7 +21,7 @@
     </header>
 
     <!-- form to input task information -->
-    <form class="flex flex-col m-10 justify-center content-center">
+    <form class="flex flex-col m-10 justify-center content-center" required>
    
 
 
@@ -34,7 +34,7 @@
       <!-- task name input -->
       <div class="flex justify-center mb-5 w-10/12">
         <Label for="taskName" class="mr-1">Task Name:</Label>
-        <input type="text" id="taskName" class="border-solid	border-black">
+        <input type="text" id="taskName" class="border-solid	border-black" required>
         <!-- <input type="text" list="tasks" id="task" name="task">
         <datalist id="tasks"> 
          <option value="start a load of laundry"> </option>
@@ -51,7 +51,7 @@
       <div class="flex justify-center mb-5 w-100">
         <div class="flex flex-col">
           <label for="taskDescription" class="mr-1">Description:</label>
-          <textarea id="taskDescription" name="taskDescription" rows="4" cols="56"></textarea>
+          <textarea id="taskDescription" name="taskDescription" rows="4" cols="56" required></textarea>
            <!-- <input type="text" list="assignment" id="description" name="description">
            <datalist id="assignment">
              <option value="wash, dry, and fold clothes"></option>
@@ -67,7 +67,7 @@
       <!-- assigned to who? -->
       <div class="flex justify-center mb-5 w-10/12">
         <label for="assignedTo" class="mr-1">Assigned To:</label>
-        <input type="text" id="assignedTo" list="names" name="assignedTo">
+        <input type="text" id="assignedTo" list="names" name="assignedTo" required>
         <!-- <datalist id="names">
           <option value="Johnny"></option>
           <option value="Eskinder"></option>
@@ -82,7 +82,7 @@
       <div class="flex justify-center mb-10 ml-7 w-3/4">
         <div class="flex">
           <label for="calendar" class="mr-1">Due Date:</label>
-          <input type="date" id="calendar" class="pl-1">
+          <input type="date" id="calendar" class="pl-1" required>
         </div>
       </div>
       

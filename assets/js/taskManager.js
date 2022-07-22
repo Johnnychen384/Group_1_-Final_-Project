@@ -56,14 +56,21 @@ export default class TaskManager{
 
 
     render(){
-        tasksHtmlList = [];
-
-        this.tasks.forEach(task => {
+        const tasksHtmlList = this.tasks.map(task => {
             const current = task;
-            const date = new Date(dueDate)
-            console.log(date)
-            // const formattedDate = 
+            const date = new Date(current.DueDate)
+            const formattedDate = date.getDay() +'/' + date.getMonth() + '/' + date.getFullYear();
+            console.log(formattedDate)
+            const taskHtml = createTaskHtml(current.Name, current.Description, current.AssignedTo, current.DueDate)
+            return taskHtml;
+            
         })
+
+        
+
+        const taskHtml = tasksHtmlList.join('\n')
+        
+        return taskHtml
     }
 
 };
