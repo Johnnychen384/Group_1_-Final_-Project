@@ -67,16 +67,4 @@ export default class TaskManager{
     }
 
 };
-
-deleteTask(taskId)  
-    let newTasks = [];
-
-    for (let i = 0; i < this._tasks.length; i++) {
-        let task = this._tasks[i];
-
-        if (task.id !== taskId) {
-            newTasks.push(task);
-        }
-    }
-    this._tasks = newTasks;
     
