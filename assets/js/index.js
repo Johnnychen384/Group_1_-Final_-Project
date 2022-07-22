@@ -75,7 +75,35 @@ btn.addEventListener('click', () => {
     
 });
 
+// Event listerner for mark as done button.
 
+const taskList = document.querySelector("#taskList");
+
+taskList.addEventListener("click", (event) => {
+	if (event.target.classList.contains("done-button")) {
+		let parentTask = event.target.parentNode.parentNode.parentNode;
+        let taskId = parseInt(parentTask.getAttribute("data-task-id"));
+        let task = tasks.getTaskById(taskId);
+        task.status = 'Done';
+
+		if (task.status === 'Done') {
+            event.target.classList.remove('visible');
+            event.target.classList.add('invisible');
+        } 
+
+		tasks.render();
+        tasks.save();
+	}
+
+	if (event.target.classList.contains("delete-button")) {
+		let parentTask = event.target.parentNode.parentNode.parentNode.parentNode;
+		let taskId = parseInt(parentTask.getAttribute("data-task-id"));
+		document.getElementById("taskList").innerHTML = "";
+		tasks.deleteTask(taskId)
+		tasks.save()
+		tasks.render()
+	}
+});
 
 
 
