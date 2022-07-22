@@ -8,7 +8,7 @@ const inputWho = document.getElementById('assignedTo');
 const inputCal = document.getElementById('calendar');
 const taskContainer = document.getElementById('taskContainer');
 const btn = document.getElementById('submitBtn');
-
+const doneBtn = document.getElementById('markedDone');
 
 // creates new Object called newTask using TaskManager Class
 // has to be declared above the call back function on btn 
@@ -96,8 +96,6 @@ btn.addEventListener('click', () => {
     
     
 });
-
-
 
 
 
