@@ -1,5 +1,8 @@
-// allows this javascript page to use TaskManager Class from taskManager.js page.
-import TaskManager from "./taskManager.js";
+let tasks = new TaskManager();
+
+tasks.load();
+tasks.render();
+
 
 // selectors -------------------------------------------------->
 const inputName =  document.getElementById('taskName');
@@ -8,7 +11,7 @@ const inputWho = document.getElementById('assignedTo');
 const inputCal = document.getElementById('calendar');
 const taskContainer = document.getElementById('taskContainer');
 const btn = document.getElementById('submitBtn');
-const doneBtn = document.getElementById('markedDone');
+const doneBtn = document.getElementById('markDone');
 
 // creates new Object called newTask using TaskManager Class
 // has to be declared above the call back function on btn 
@@ -97,5 +100,33 @@ btn.addEventListener('click', () => {
     
 });
 
+// Event listener for mark as done button.
 
+const taskList = document.querySelector("#taskList");
+
+taskList.addEventListener("click", (event) => {
+	if (event.target.classList.contains("done-button")) {
+		let parentTask = event.target.parentNode.parentNode.parentNode;
+        let taskId = parseInt(parentTask.getAttribute("data-task-id"));
+        let task = tasks.getTaskById(taskId);
+        task.status = 'Done';
+
+		if (task.status === 'Done') {
+            event.target.classList.remove('visible');
+            event.target.classList.add('invisible');
+        } 
+
+		tasks.render();
+        tasks.save();
+	}
+
+	if (event.target.classList.contains("delete-button")) {
+		let parentTask = event.target.parentNode.parentNode.parentNode.parentNode;
+		let taskId = parseInt(parentTask.getAttribute("data-task-id"));
+		document.getElementById("taskList").innerHTML = "";
+		tasks.deleteTask(taskId)
+		tasks.save()
+		tasks.render()
+	}
+});
 

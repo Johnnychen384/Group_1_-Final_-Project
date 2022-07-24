@@ -11,7 +11,7 @@
     <script src="https://kit.fontawesome.com/9beae211b7.js" crossorigin="anonymous"></script>
 
     <!-- our own css -->
-    <!-- <link rel="stylesheet" href="styles.css"> -->
+      <link rel="stylesheet" href="./assets/css/styles.css"> 
   </head>
   <body class="bg-gradient-to-r from-cyan-500 to-blue-500">
     
@@ -23,14 +23,7 @@
     <!-- form to input task information -->
     <form class="flex flex-col m-10 justify-center content-center" required>
    
-
-
-    
-    <!-- Link to JavaScript file  -->
-    <!-- <script src="js/index.js"></script> -->
-
-    
-      <!-- task name input -->
+ <!-- task name input -->
       <div class="flex justify-center mb-5 w-10/12">
         <Label for="taskName" class="mr-1">Task Name:</Label>
         <input type="text" id="taskName" class="border-solid	border-black" required>
@@ -94,11 +87,32 @@
 
     <!-- holds all tasks we create. -->
     <main id="taskContainer" class="flex flex-col justify-center mx-64">
+
+     <!--Container card for tasks-->
+      <div class="taskFont">
+        <ul id="taskList" class=" list-group">        <li id="taskCard" class="list-group-item" data-task-id="4">
+        <div class="card-body" id="data-task-id">
+          <div class="alignment">
+            <p class="card-text" id="title"><span class="fw-bold">Task Name:</span></p>
+          <button type="button" class="markDone btn btn-primary done-button visible">Mark as done</button>
+          </div>
+          <p class="card-text"><span class="fw-bold">Task Description:</span>  </p>
+          <p class="card-text"><span class="fw-bold">Assigned Date:</span> </p>
+          <p class="card-text"><span class="fw-bold">Due Date:</span> 7/21/2022</p>
+          <div class="alignment">
+          <p class="card-text"><span class="fw-bold">Status:</span> ToDo</p>
+          <div class="move">
+              <button type="button" class="btn btn-danger delete-button">Delete</button>
+          </div>
+        </div>
+        </div>
+    </li></ul>
+        </div>
     
     </main>
     
-    <script src="assets/js/index.js" type="module"></script>
-    <script src="assets/js/JC.js"></script>
-    <script src="js/taskManager.js"></script>
+    <script type="module" src="./assets/js/index.js"></script> 
+    <script src="./assets/js/JC.js"></script>
+    <script src="./assets/js/taskManager.js"></script>
   </body>
 </html>
