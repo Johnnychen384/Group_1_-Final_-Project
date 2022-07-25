@@ -81,7 +81,7 @@ btn.addEventListener('click', () => {
 
         // calls the addTask method in the newTask Object, passing in stored input field values.
         newTask.addTask(taskName, taskDesc, who, cal, "TODO");
-        
+        console.log(newTask);
 
         // calls render function and saves reference in content var
         const content = newTask.render();
@@ -102,9 +102,9 @@ btn.addEventListener('click', () => {
 
 // Event listener for mark as done button.
 
-const taskList = document.querySelector("#taskList");
+const taskList = document.querySelector("#taskContainer");
 
-taskList.addEventListener("click", (event) => {
+taskContainer.addEventListener("click", (event) => {
 	if (event.target.classList.contains("done-button")) {
 		let parentTask = event.target.parentNode.parentNode.parentNode;
         let taskId = parseInt(parentTask.getAttribute("data-task-id"));

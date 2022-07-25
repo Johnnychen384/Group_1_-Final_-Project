@@ -10,7 +10,7 @@ const createTaskHtml = (name, description, assignedTo, dueDate, status, id) => {
 		<div class="card-body" id="data-task-id">
 		  <div class="alignment">
 		    <p class="card-text" id="title"><span class="fw-bold">Task Name:</span> ${name}</p>
-			<button type="button" class="markDOM btn btn-secondary done-button ${doneButtonVisibility}">Mark as done</button>
+			<button type="button" class="markDone btn btn-secondary done-button ${doneButtonVisibility}">Mark as done</button>
 			</div>
 		  <p class="card-text"><span class="fw-bold">Task Description:</span> ${description}</p>
 		  <p class="card-text"><span class="fw-bold">Assigned Date:</span> ${assignedTo}</p>
@@ -43,7 +43,7 @@ class TaskManager {
 		};
 		this._tasks.push(newTask);
 	}
-
+	
 	render() {
 		const taskHtmlList = [];
 
@@ -80,16 +80,19 @@ class TaskManager {
 	save() {
 		const tasksJson = JSON.stringify(this._tasks);
 		localStorage.setItem("tasks", tasksJson);
-
+		console.log(tasksJson)
 		const currentId = this._currentId.toString();
 		localStorage.setItem("currentId", currentId);
+		
 	}
 
 	load() {
 		if (localStorage.getItem("tasks")) {
 			let tasksJson = localStorage.getItem("tasks");
 			this._tasks = JSON.parse(tasksJson);
+			console.log(tasksJson)
 		}
+
 
 		if (localStorage.getItem("currentId")) {
 			let currentId = localStorage.getItem("currentId");
