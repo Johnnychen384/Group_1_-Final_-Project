@@ -98,4 +98,10 @@ btn.addEventListener('click', () => {
 });
 
 
+taskContainer.addEventListener('click', e => {
+    const target = e.target;
 
+    if(target.classList[0] === "done-button"){
+        console.log(target.parentElement.parentElement.dataset)
+    }
+})

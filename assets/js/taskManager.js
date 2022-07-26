@@ -1,13 +1,13 @@
 
 // function that creates task using passed in arguments.
-const  createTaskHtml =(name, description, assignedTo, dueDate, status) => {
+const  createTaskHtml =(name, description, assignedTo, dueDate, id, status) => {
 
     // let doneButtonVisibility = "visible";
 	// if (status === "Done") {
 	// 	doneButtonVisibility = "invisible";
 	// }
 
-//     return `        <li id="taskCard" class="list-group-item" data-task-id = "${id}">
+    // return `        <li id="taskCard" class="list-group-item" data-task-id = "${id}">
 // // 		<div class="card-body" id="data-task-id">
 // // 		  <div class="alignment">
 // // 		    <p class="card-text" id="title"><span class="fw-bold">Task Name:</span> ${name}</p>
@@ -26,12 +26,12 @@ const  createTaskHtml =(name, description, assignedTo, dueDate, status) => {
 // // </li>`;
 
     return `
-        <div class="flex justify-between bg-white h-16 mb-2 px-4">
+        <div class="flex justify-between bg-white h-16 mb-2 px-4" data-id="${id}">
             <div class="flex flex-col pt-4">
-                <button class="completedTask">
-                    <i class="far fa-square pointer-events-none"></i>
+                <button class="done-button">
+                    <p class="pointer-events-none">Mark As Done</p>
                 </button>
-                <button class="details text-xs">Details</button>
+                <button class="details text-xs mt-1">Details</button>
             </div>
             <h1 class="mt-5 text-lg">${name}</h1>
 
@@ -44,8 +44,6 @@ const  createTaskHtml =(name, description, assignedTo, dueDate, status) => {
         </div>
     `
 }
-
-
 
 
 // export default allows the TaskManager class to be used in other javascript files.
@@ -84,8 +82,9 @@ export default class TaskManager{
             const current = task;
             const date = new Date(current.DueDate)
             const formattedDate = date.getDay() +'/' + date.getMonth() + '/' + date.getFullYear();
-            console.log(formattedDate)
-            const taskHtml = createTaskHtml(current.Name, current.Description, current.AssignedTo, current.DueDate)
+            
+            const taskHtml = createTaskHtml(current.Name, current.Description, current.AssignedTo, current.DueDate, current.ID)
+           
             return taskHtml;
             
         })
