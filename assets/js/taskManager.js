@@ -99,24 +99,16 @@ export default class TaskManager{
     }
 
 
-    getTaskById(taskId) {
-		let foundTask;
     
-		//for (let task of this.tasks) {
-		//if (task.id == taskId) {
-			//foundTask = task;
-			console.log(this.tasks)
-       }
-	 	}
-	//	return foundTask;
+    getTaskById(taskId) {
+        let foundTask;
+        foundTask = this.tasks.filter(task => {
+            if(taskId.id === task.ID){
+                return task
+            }
+        })
+    }
 
-        const item = this.tasks.filter(x => {
-        
-         
-         return (taskId)===(x.id);
-
-        
-	})
 
 	// save() {
 	// 	const tasksJson = JSON.stringify(this._tasks);
@@ -154,5 +146,6 @@ export default class TaskManager{
 	// 	this._tasks = newTasks;
 	// }
 
-//};
+};
+
     
