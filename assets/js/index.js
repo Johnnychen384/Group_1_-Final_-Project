@@ -103,5 +103,6 @@ taskContainer.addEventListener('click', e => {
 
     if(target.classList[0] === "done-button"){
         console.log(target.parentElement.parentElement.dataset)
+        newTask.getTaskById(target.parentElement.parentElement.dataset)
     }
 })

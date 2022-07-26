@@ -49,6 +49,8 @@ const  createTaskHtml =(name, description, assignedTo, dueDate, id, status) => {
 // export default allows the TaskManager class to be used in other javascript files.
 export default class TaskManager{
 
+
+
     // function to create properties for object.
     constructor(currentId = 0){
         this.tasks = []
@@ -97,16 +99,24 @@ export default class TaskManager{
     }
 
 
-    // getTaskById(taskId) {
-	// 	let foundTask;
+    getTaskById(taskId) {
+		let foundTask;
+    
+		//for (let task of this.tasks) {
+		//if (task.id == taskId) {
+			//foundTask = task;
+			console.log(this.tasks)
+       }
+	 	}
+	//	return foundTask;
 
-	// 	for (let task of this._tasks) {
-	// 		if (task.id == taskId) {
-	// 			foundTask = task;
-	// 		}
-	// 	}
-	// 	return foundTask;
-	// }
+        const item = this.tasks.filter(x => {
+        
+         
+         return (taskId)===(x.id);
+
+        
+	})
 
 	// save() {
 	// 	const tasksJson = JSON.stringify(this._tasks);
@@ -144,5 +154,5 @@ export default class TaskManager{
 	// 	this._tasks = newTasks;
 	// }
 
-};
+//};
     
