@@ -102,7 +102,17 @@ taskContainer.addEventListener('click', e => {
     const target = e.target;
 
     if(target.classList[0] === "done-button"){
-        console.log(target.parentElement.parentElement.dataset)
-        newTask.getTaskById(target.parentElement.parentElement.dataset)
+        let parentTask = e.target.parentNode.parentNode.parentNode;
+        let taskId = parseInt(parentTask.getAttribute("data-task-id"));
+        let task = newTask.getTaskById(taskId);
+        newTask.status = 'Done';
+
+		if (newTask.status === 'Done') {
+            e.target.classList.remove('visible');
+            e.target.classList.add('invisible');
+
     }
+}
 })
+ 
+  

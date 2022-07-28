@@ -2,29 +2,10 @@
 // function that creates task using passed in arguments.
 const  createTaskHtml =(name, description, assignedTo, dueDate, id, status) => {
 
-    // let doneButtonVisibility = "visible";
-	// if (status === "Done") {
-	// 	doneButtonVisibility = "invisible";
-	// }
-
-    // return `        <li id="taskCard" class="list-group-item" data-task-id = "${id}">
-// // 		<div class="card-body" id="data-task-id">
-// // 		  <div class="alignment">
-// // 		    <p class="card-text" id="title"><span class="fw-bold">Task Name:</span> ${name}</p>
-// // 			<button type="button" class="markDone btn btn-secondary done-button ${doneButtonVisibility}">Mark as done</button>
-// // 			</div>
-// // 		  <p class="card-text"><span class="fw-bold">Task Description:</span> ${description}</p>
-// // 		  <p class="card-text"><span class="fw-bold">Assigned Date:</span> ${assignedTo}</p>
-// // 		  <p class="card-text"><span class="fw-bold">Due Date:</span> ${dueDate}</p>
-// // 		  <div class="alignment">
-// // 		  <p class="card-text"><span class="fw-bold">Status:</span> ${status}</p>
-// // 		  <div class="move">
-// // 		      <button type="button" class="btn btn-danger delete-button">Delete</button>
-// // 		  </div>
-// // 		</div>
-// // 	  </div>
-// // </li>`;
-
+     let doneButtonVisibility = "visible";
+	 if (status === "Done") {
+		doneButtonVisibility = "invisible";
+	 }
     return `
         <div class="flex justify-between bg-white h-16 mb-2 px-4" data-id="${id}">
             <div class="flex flex-col pt-4">
@@ -104,7 +85,7 @@ export default class TaskManager{
         let foundTask;
         foundTask = this.tasks.filter(task => {
             if(taskId.id === task.ID){
-                return task
+                return foundTask
             }
         })
     }
