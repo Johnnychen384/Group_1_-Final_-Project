@@ -15,6 +15,7 @@ const doneBtn = document.getElementById('markedDone');
 // to prevent resetting array in newTask. This allows us
 // to add multiple objects into array.
 const newTask = new TaskManager();
+newTask.load();
 
 
 // events ------------------------------------------------------->
@@ -81,6 +82,7 @@ btn.addEventListener('click', () => {
         
 
         // calls render function and saves reference in content var
+        newTask.save();
         const content = newTask.render();
 
         // set taskContainers html  equal to content
@@ -94,7 +96,7 @@ btn.addEventListener('click', () => {
 
     };
     
-    
+
 });
 
 

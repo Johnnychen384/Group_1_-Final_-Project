@@ -34,7 +34,12 @@ export default class TaskManager{
 
     // function to create properties for object.
     constructor(currentId = 0){
-        this.tasks = []
+        if(localStorage.getItem("tasks") === null){ 
+            this.tasks = []
+        } else {
+            this.tasks = load()
+        }
+        
         this.currentId = currentId;
     }
 
@@ -60,7 +65,7 @@ export default class TaskManager{
     }
 
 
-    render(){
+    render(){  
         const tasksHtmlList = this.tasks.map(task => {
             const current = task;
             const date = new Date(current.DueDate)
@@ -91,22 +96,22 @@ export default class TaskManager{
     }
 
 
-	// save() {
-	// 	const tasksJson = JSON.stringify(this._tasks);
-	// 	localStorage.setItem("tasks", tasksJson);
-	// 	console.log(tasksJson)
-	// 	const currentId = this._currentId.toString();
-	// 	localStorage.setItem("currentId", currentId);
+	 save() {
+	 	const tasksJson = JSON.stringify(this.tasks);
+	 	localStorage.setItem("tasks", tasksJson);
+	 	console.log(tasksJson)
+	 	const currentId = this.currentId.toString();
+	 	localStorage.setItem("currentId", currentId);
 		
-	// }
+	 }
 
-	// load() {
-	// 	if (localStorage.getItem("tasks")) {
-	// 		let tasksJson = localStorage.getItem("tasks");
-	// 		this._tasks = JSON.parse(tasksJson);
-	// 		console.log(tasksJson)
-	// 	}
-
+	 load() {
+	 	if (localStorage.getItem("tasks")) {
+	 		let tasksJson = localStorage.getItem("tasks");
+			this.tasks = JSON.parse(tasksJson);
+	 		console.log(tasksJson)
+	 	}
+    }
 
 	// 	if (localStorage.getItem("currentId")) {
 	// 		let currentId = localStorage.getItem("currentId");
