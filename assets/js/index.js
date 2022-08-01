@@ -48,16 +48,16 @@ btn.addEventListener('click', () => {
 
 
     // checks if any input field is empty
-    if(inputName.value === "" ){
+    if(!inputName.value){
         warningPop("Task_Name")
        
-    } else if(inputDesc.value === ''){
+    } else if(!inputDesc.value){
         warningPop("Description")
 
-    } else if(inputWho.value === ""){
+    } else if(!inputWho.value){
         warningPop("Assigned_To")
 
-    } else if(inputCal.value === ""){
+    } else if(!inputCal.value){
         warningPop("Date")
         
     } else {
