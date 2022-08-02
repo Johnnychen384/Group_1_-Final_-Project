@@ -27,15 +27,7 @@
       <div class="flex justify-center mb-5 w-10/12">
         <Label for="taskName" class="mr-1">Task Name:</Label>
         <input type="text" id="taskName" class="border-solid	border-black" required>
-        <!-- <input type="text" list="tasks" id="task" name="task">
-        <datalist id="tasks"> 
-         <option value="start a load of laundry"> </option>
-         <option value="clean the family car"> </option>
-         <option value="wash and vaccum the family car"></option>
-         <option value="purchase items on grocery list"></option>
-         <option value="prepare and put away meals for the week"></option>
-         <option value="adjust the waters pH and remove debris"></option>
-        </datalist> -->
+        
       </div>
       
 
@@ -44,14 +36,7 @@
         <div class="flex flex-col">
           <label for="taskDescription" class="mr-1">Description:</label>
           <textarea id="taskDescription" name="taskDescription" rows="4" cols="56" required></textarea>
-           <!-- <input type="text" list="assignment" id="description" name="description">
-           <datalist id="assignment">
-             <option value="wash, dry, and fold clothes"></option>
-             <option value="wash and vaccum the family car"></option>
-             <option value="purchase items on grocery list"></option>
-             <option value="prepare and put away meals for the week"></option>
-             <option value="adjust the waters pH and remove debris"></option>
-           </datalist> -->
+           
         </div> 
       </div>
       
@@ -60,13 +45,7 @@
       <div class="flex justify-center mb-5 w-10/12">
         <label for="assignedTo" class="mr-1">Assigned To:</label>
         <input type="text" id="assignedTo" list="names" name="assignedTo" required>
-        <!-- <datalist id="names">
-          <option value="Johnny"></option>
-          <option value="Eskinder"></option>
-          <option value="Amanda"></option>
-          <option value="Richard"></option>
-          <option value="Therry"></option>
-        </datalist> -->
+        
       </div>
       
 
@@ -80,7 +59,7 @@
       
       
       <!-- the add task button -->
-      <div class="flex justify-center ">
+      <div class="flex justify-center " id="tasks">
         <button type="submit" id="submitBtn" class="hover:text-xl hover:opacity-40 border-solid border-2 border-black w-32 py-2">Add Task</button>
       </div>
     </form>

@@ -17,7 +17,23 @@ const doneBtn = document.getElementById('markedDone');
 const newTask = new TaskManager();
 
 
+
 // events ------------------------------------------------------->
+
+window.addEventListener('DOMContentLoaded', () => {
+
+    // on DOM load newTask.load function is called to grab any saved info 
+    // from localstorage and setting it to the objects currentID and tasks array.
+    newTask.load()
+
+    // calls render function which returns a bunch of tasks with html/css filled out
+    const content = newTask.render()
+
+    // setting the html of taskcontainer to the saved tasks referenced by content.
+    taskContainer.innerHTML = content;
+})
+
+
 
 // adds event + function to the submit button
 btn.addEventListener('click', () => {
@@ -81,6 +97,7 @@ btn.addEventListener('click', () => {
         
 
         // calls render function and saves reference in content var
+        newTask.save();
         const content = newTask.render();
 
         // set taskContainers html  equal to content
@@ -94,15 +111,26 @@ btn.addEventListener('click', () => {
 
     };
     
-    
+
 });
+
 
 
 taskContainer.addEventListener('click', e => {
     const target = e.target;
 
     if(target.classList[0] === "done-button"){
-        console.log(target.parentElement.parentElement.dataset)
-        newTask.getTaskById(target.parentElement.parentElement.dataset)
+        let parentTask = e.target.parentNode.parentNode.parentNode;
+        let taskId = parseInt(parentTask.getAttribute("data-task-id"));
+        let task = newTask.getTaskById(taskId);
+        newTask.status = 'Done';
+
+		if (newTask.status === 'Done') {
+            e.target.classList.remove('visible');
+            e.target.classList.add('invisible');
+
     }
+}
 })
+ 
+  
