@@ -31,6 +31,9 @@ window.addEventListener('DOMContentLoaded', () => {
 
     // setting the html of taskcontainer to the saved tasks referenced by content.
     taskContainer.innerHTML = content;
+
+    
+
 })
 
 
@@ -93,7 +96,7 @@ btn.addEventListener('click', () => {
         
 
         // calls the addTask method in the newTask Object, passing in stored input field values.
-        newTask.addTask(taskName, taskDesc, who, cal, "TODO");
+        newTask.addTask(taskName, taskDesc, who, cal);
         
 
         // calls render function and saves reference in content var
@@ -117,20 +120,87 @@ btn.addEventListener('click', () => {
 
 
 taskContainer.addEventListener('click', e => {
+
+    
     const target = e.target;
 
     if(target.classList[0] === "done-button"){
         let parentTask = e.target.parentNode.parentNode.parentNode;
-        let taskId = parseInt(parentTask.getAttribute("data-task-id"));
+        let taskId = +parentTask.dataset.id;
         let task = newTask.getTaskById(taskId);
         newTask.status = 'Done';
 
-		if (newTask.status === 'Done') {
+
+        if (newTask.status === 'Done') {
             e.target.classList.remove('visible');
             e.target.classList.add('invisible');
-
+        }
     }
-}
+
+
+    // checks if button clicked has deleteIt class
+    if(target.classList.contains('deleteIt')){
+
+        // save clicked elements parent element
+        let parentTask = target.parentElement;
+        // get the id of element and + sign changes it to a number.
+        let taskId = +parentTask.dataset.id;
+       
+        // deletes task by passing it the selected tasks id
+        newTask.deleteTask(taskId);
+
+        // save changed array to local
+        newTask.save();
+
+        // reloads data from local to change this.tasks array
+        newTask.load();
+
+        // renders content
+        const content = newTask.render();
+        taskContainer.innerHTML = content;
+    }
+
+
+    // checks to make sure what is clicked is details
+    if(target.classList[0] === "details"){
+        
+        // stored data from inputs that are hidden inside the tasks
+        // I assign variables to these data to allow it to be easier to add to new div.
+        const taskDescription = target.parentElement.parentElement.children[3].innerHTML;
+        const taskWho = target.parentElement.parentElement.children[4].innerHTML;
+        const taskCal = target.parentElement.parentElement.children[5].innerHTML;
+
+        // creates new div and adds content onto it based on above varibles.
+        const newDiv = document.createElement('div')
+        newDiv.classList.add('flex', 'flex-col', 'bg-white', 'absolute', 'h-fill', 'w-3/6', 'border-2', 'border-black', 'top-3/5', 'p-10', 'left-1/4')
+        newDiv.setAttribute('id', 'popUp')
+        newDiv.innerHTML += `
+            <div class="flex flex-col">
+                <h1 class="mb-3">Description</h1>
+                <p class="border-2 border-black	h-20">${taskDescription}</p>
+            </div>
+            <br>
+            <p>Assigned To: ${taskWho}</p>
+            <br>
+            <div class="flex justify-between">
+                <p>Due By: ${taskCal}</p>
+                <button class="closeIt">Close</button>
+            </div>
+            
+        `
+
+        // adds newDiv to task container.
+        taskContainer.appendChild(newDiv);
+        
+    }
+
+
+    // checks if button has class called closeIt
+    if(target.classList[0] === "closeIt"){
+
+        // removes close buttons grandparent element.
+        target.parentElement.parentElement.remove();
+    }
 })
  
   

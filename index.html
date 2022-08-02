@@ -13,7 +13,8 @@
     <!-- our own css -->
       <link rel="stylesheet" href="./assets/css/styles.css"> 
   </head>
-  <body class="bg-gradient-to-r from-cyan-500 to-blue-500">
+
+  <body class="bg-gradient-to-r from-cyan-500 to-blue-500" id="theBody">
     
     <!-- title -->
     <header class="flex justify-center content-center">
@@ -23,7 +24,7 @@
     <!-- form to input task information -->
     <form class="flex flex-col m-10 justify-center content-center" required>
    
- <!-- task name input -->
+    <!-- task name input -->
       <div class="flex justify-center mb-5 w-10/12">
         <Label for="taskName" class="mr-1">Task Name:</Label>
         <input type="text" id="taskName" class="border-solid	border-black" required>
@@ -64,6 +65,9 @@
       </div>
     </form>
 
+
+
+    
     <!-- holds all tasks we create. -->
     <main id="taskContainer" class="flex flex-col justify-center mx-64">
 

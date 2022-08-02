@@ -2,15 +2,19 @@
 // function that creates task using passed in arguments.
 const  createTaskHtml =(name, description, assignedTo, dueDate, id, status) => {
 
-     let doneButtonVisibility = "visible";
-	 if (status === "Done") {
-		doneButtonVisibility = "invisible";
-	 }
+    if (status === "Done") {
+        
+        let doneButtonVisibility = "invisible";
+       
+    } else {
+        let doneButtonVisibility = "visible";
+    }
+
     return `
         <div class="flex justify-between bg-white h-16 mb-2 px-4" data-id="${id}">
             <div class="flex flex-col pt-4">
                 <button class="done-button">
-                    <p class="pointer-events-none">Mark As Done</p>
+                    <p class="pointer-events-none" id="markBtn">Mark As Done</p>
                 </button>
                 <button class="details text-xs mt-1">Details</button>
             </div>
@@ -22,6 +26,7 @@ const  createTaskHtml =(name, description, assignedTo, dueDate, id, status) => {
             <p class="hidden">${description}</p>
             <p class="hidden">${assignedTo}</p>
             <p class="hidden">${dueDate}</p>
+            <p class="hidden" id="status">${status}</p>
         </div>
     `
 }
@@ -39,7 +44,7 @@ export default class TaskManager{
     }
 
     // function(method) that increments id of object and creates an object
-    addTask(name, description, assignedTo, dueDate, status){
+    addTask(name, description, assignedTo, dueDate){
 
         // increments currentId
         this.currentId++
@@ -51,7 +56,7 @@ export default class TaskManager{
             Description:`${description}`,
             AssignedTo:`${assignedTo}`,
             DueDate:`${dueDate}`,
-            Status:`${status}`
+            Status:`ToDo`
             
         }
 
@@ -72,7 +77,7 @@ export default class TaskManager{
             const formattedDate = date.getDay() +'/' + date.getMonth() + '/' + date.getFullYear();
             
             // calls the createTaskHtml passing in all information from each task in the tasks array.
-            const taskHtml = createTaskHtml(current.Name, current.Description, current.AssignedTo, current.DueDate, current.ID)
+            const taskHtml = createTaskHtml(current.Name, current.Description, current.AssignedTo, current.DueDate, current.ID, current.Status)
            
             // outputs each task in the form they would look like being displayed in actual html
             return taskHtml;
@@ -95,7 +100,7 @@ export default class TaskManager{
         let foundTask = this.tasks.filter(task => {
 
             // the conditional saying if the task we current looping through has an ID equal to the ID of the task we want return
-            if(taskId.id === task.ID){
+            if(taskId.id == task.ID){
                 return foundTask
             }
         })
@@ -134,24 +139,36 @@ export default class TaskManager{
 	 	}
     }
 
-	// 	if (localStorage.getItem("currentId")) {
-	// 		let currentId = localStorage.getItem("currentId");
-	// 		this._currentId = parseInt(currentId);
-	// 	}
-	// }
+	
+    // deletes tasks
+	deleteTask(taskId) {
+        
+        let newArray = this.tasks.filter(task => {
+            
+            // whatever tasks in the this.tasks array doesnt match the task id of task clicked
+            // save it in newArray.
+            if(task.ID != taskId){
+                return task
+            }
 
-	// deleteTask(taskId) {
-	// 	let newTasks = [];
+        })
+        
+        // set this.tasks array to be whatever is inside newArrays array.
+        this.tasks = newArray;
+        
 
-	// 	for (let i = 0; i < this._tasks.length; i++) {
-	// 		let task = this._tasks[i];
-
-	// 		if (task.id !== taskId) {
-	// 			newTasks.push(task);
-	// 		}
-	// 	}
-	// 	this._tasks = newTasks;
-	// }
+        // changes ID number when delete is clicked.
+        if (this.tasks.length > 0){
+            const newID = this.tasks.length + 1
+            this.currentId = newID
+            const currentId = newID.toString()
+            localStorage.setItem("currentId", currentId);
+            
+        } else {
+            this.currentId = 0
+            localStorage.setItem("currentId", "0");
+        }
+	}
 
 };
 
