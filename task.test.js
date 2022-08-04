@@ -1,4 +1,8 @@
-const TaskManager = require("./assets/js/taskManager");
+// To test using TaskManager, import using Required because it is in node.
+// Go to taskManager.js to enable import on line 182. Remove "export default" from
+// class TaskManager. Then uncomment import below this.---------------------------------->
+
+// const TaskManager = require("./assets/js/taskManager");
 
 describe('Testing TaskManager methods', () => {
     const task = new TaskManager();

@@ -1,7 +1,9 @@
 // allows this javascript page to use TaskManager Class from taskManager.js page.
-// import TaskManager from "./taskManager.js";
+import TaskManager from "./taskManager.js";
 
-var TaskManager = require("./taskManager");
+
+// Uncomment line 6 when wanting to test and comment out line 2 ES6 import------------------->
+// var TaskManager = require("./taskManager");
 
 // selectors -------------------------------------------------->
 const inputName =  document.getElementById('taskName');
@@ -26,10 +28,10 @@ window.addEventListener('DOMContentLoaded', () => {
 
     // on DOM load newTask.load function is called to grab any saved info 
     // from localstorage and setting it to the objects currentID and tasks array.
-    newTask.load()
+    newTask.load();
 
     // calls render function which returns a bunch of tasks with html/css filled out
-    const content = newTask.render()
+    const content = newTask.render();
 
     // setting the html of taskcontainer to the saved tasks referenced by content.
     taskContainer.innerHTML = content;
@@ -64,29 +66,29 @@ btn.addEventListener('click', () => {
 
         // if input fields are empty then add warning to form
         taskContainer.appendChild(warning);
-    }
+    };
    
 
 
     // checks if any input field is empty
     if(!inputName.value){
-        warningPop("Task_Name")
+        warningPop("Task_Name");
        
     } else if(!inputDesc.value){
-        warningPop("Description")
+        warningPop("Description");
 
     } else if(!inputWho.value){
-        warningPop("Assigned_To")
+        warningPop("Assigned_To");
 
     } else if(!inputCal.value){
-        warningPop("Date")
+        warningPop("Date");
         
     } else {
 
         // removes warning
         if(document.getElementById('warning') !== null){
             document.getElementById('warning').remove();
-        }
+        };
         
         
         
@@ -136,8 +138,8 @@ taskContainer.addEventListener('click', e => {
         if (newTask.status === 'Done') {
             e.target.classList.remove('visible');
             e.target.classList.add('invisible');
-        }
-    }
+        };
+    };
 
 
     // checks if button clicked has deleteIt class
@@ -160,7 +162,7 @@ taskContainer.addEventListener('click', e => {
         // renders content
         const content = newTask.render();
         taskContainer.innerHTML = content;
-    }
+    };
 
 
     // checks to make sure what is clicked is details
@@ -189,12 +191,12 @@ taskContainer.addEventListener('click', e => {
                 <button class="closeIt">Close</button>
             </div>
             
-        `
+        `;
 
         // adds newDiv to task container.
         taskContainer.appendChild(newDiv);
         
-    }
+    };
 
 
     // checks if button has class called closeIt
@@ -202,7 +204,7 @@ taskContainer.addEventListener('click', e => {
 
         // removes close buttons grandparent element.
         target.parentElement.parentElement.remove();
-    }
-})
+    };
+});
  
   
