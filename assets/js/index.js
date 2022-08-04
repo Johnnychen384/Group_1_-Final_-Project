@@ -1,5 +1,7 @@
 // allows this javascript page to use TaskManager Class from taskManager.js page.
-import TaskManager from "./taskManager.js";
+// import TaskManager from "./taskManager.js";
+
+var TaskManager = require("./taskManager");
 
 // selectors -------------------------------------------------->
 const inputName =  document.getElementById('taskName');
@@ -125,7 +127,7 @@ taskContainer.addEventListener('click', e => {
     const target = e.target;
 
     if(target.classList[0] === "done-button"){
-        let parentTask = e.target.parentNode.parentNode.parentNode;
+        let parentTask = target.parentElement.parentElement;
         let taskId = +parentTask.dataset.id;
         let task = newTask.getTaskById(taskId);
         newTask.status = 'Done';

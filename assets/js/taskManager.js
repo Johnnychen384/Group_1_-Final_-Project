@@ -33,7 +33,7 @@ const  createTaskHtml =(name, description, assignedTo, dueDate, id, status) => {
 
 
 // export default allows the TaskManager class to be used in other javascript files.
-export default class TaskManager{
+class TaskManager{
 
 
 
@@ -62,6 +62,8 @@ export default class TaskManager{
 
         // pushes new object created by this addTask function into this.tasks array
         this.tasks.push(task);
+
+        return task
     }
 
 
@@ -98,12 +100,15 @@ export default class TaskManager{
 
         // loops through this.tasks array and checks for a condition
         let foundTask = this.tasks.filter(task => {
-
+            
             // the conditional saying if the task we current looping through has an ID equal to the ID of the task we want return
-            if(taskId.id == task.ID){
-                return foundTask
+            if(taskId == task.ID){
+                
+                return task
             }
         })
+        
+        return foundTask
     }
 
 
@@ -158,18 +163,20 @@ export default class TaskManager{
         
 
         // changes ID number when delete is clicked.
-        if (this.tasks.length > 0){
-            const newID = this.tasks.length + 1
-            this.currentId = newID
-            const currentId = newID.toString()
-            localStorage.setItem("currentId", currentId);
+        // if (this.tasks.length > 0){
+        //     const newID = this.tasks.length + 1
+        //     this.currentId = newID
+        //     const currentId = newID.toString()
+        //     localStorage.setItem("currentId", currentId);
             
-        } else {
-            this.currentId = 0
-            localStorage.setItem("currentId", "0");
-        }
+        // } else {
+        //     this.currentId = 0
+        //     localStorage.setItem("currentId", "0");
+        // }
 	}
 
 };
 
     
+
+module.exports = TaskManager; 
